@@ -1,0 +1,9 @@
+.baseTela2{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: rgb(84, 233, 47);
+    width: 100vw;
+    height: 100vh;
+    color: white
+}
