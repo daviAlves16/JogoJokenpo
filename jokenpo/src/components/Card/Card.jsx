@@ -4,8 +4,8 @@ import './Card.css'
 export function Card(props) {
   return (
     <div className='Card'>
-        <div>
-            <h1>{props.link}</h1>
+        <div className='divImgs'>
+            <img className='imgCard' src={props.link} alt=""/>
         </div>
         <div className='divNome'>
             <strong>{props.name}</strong>

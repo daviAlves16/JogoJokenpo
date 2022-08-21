@@ -1,10 +1,22 @@
 .Card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
     border: 1px solid black;
     margin: 10px;
     width: 200px;
+    height: 200px;
 }
 .divNome{
     border-top: 1px solid black;
     background: rgb(63, 61, 61);
     color: white;
+}
+.divImgs{
+    height: 900%;
+    width: 90%;
+}
+.imgCard{
+    width: 100%;
+    height: 100%;
 }
