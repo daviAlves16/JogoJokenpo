@@ -8,7 +8,7 @@ export function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Tela1/>}/>
-        <Route path="/tela2" element={<Tela2/>}/>
+        <Route path="/tela2/:id/:idpc" element={<Tela2/>}/>
       </Routes>
     </Router>
   )

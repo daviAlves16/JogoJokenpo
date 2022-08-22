@@ -6,9 +6,10 @@ import { Card } from '../../components/Card/Card'
 
 export function Tela1() {
 
-
   const [personagens, setPersonagens] = useState([]);
   var cont = 0
+  var ids = []
+  var test = 0
 
   function criar(){
 
@@ -16,15 +17,24 @@ export function Tela1() {
     })
     .then((response) => {
       for(let i = 0; i <response.data.length; i++){
+        ids.push(response.data[i].id)
+      }
+      test = Math.floor(Math.random() * ids.length);
+     
+      
+
+      for(let i = 0; i <response.data.length; i++){
         const newPersonage = {
           id: response.data[i].id,
           name: response.data[i].nome,
-          imgPersonagem: response.data[i].imagem
+          imgPersonagem: response.data[i].imagem,
+          url: "/tela2/" + response.data[i].id +"/"+ ids[test]
           }
           setPersonagens(prevState => [...prevState, newPersonage]);
-      }  
+          
+      }
+      
     })
-
   }
   
   useEffect(() =>{
@@ -39,11 +49,21 @@ export function Tela1() {
         <h1>Tela 1</h1>
         <div className='cardsPosition'>
         {
-          personagens.map(personagem => <Card name={personagem.name} link={personagem.imgPersonagem}/>)
+          
+          personagens.map(personagem => (
+            <Link key={personagem.id} to={personagem.url}>
+              
+              <Card
+                name={personagem.name} 
+                link={personagem.imgPersonagem} 
+              />
+
+            </Link>
+          ))
         }
         
         </div>
-       <Link to="/tela2"><input type="button" value="COMEÇAR"/></Link>
+       
     </div>
   )
 }
