@@ -7,4 +7,85 @@
 }
 .divCards2{
     display: flex;
+    justify-content: space-between ;
+    width: 100vw;
+}
+.divDoJogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: black;
+}
+.movimentosDoJogos{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.placares{
+    height: 10vw;
+    width: 100%;
+    background: blue;
+    color: aliceblue;
+}
+.placar2{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.divNomePlacar{
+    text-align: center;
+}
+.jogadas{
+    height: 11vw;
+    width: 11vw;
+    border: 1px solid black;
+    margin: 5px;
+}
+.divMovimentos{
+    width: 100%;
+    height: 30vh;
+    border: 1px solid black ;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.divMovimentosJogador{
+    background: red;
+    height: 100%;
+    width: 33vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.movimentoItem{
+    height: 5vw;
+    width: 5vw;
+}
+.movimentoItem:focus{
+    border: 5px blue solid;
+}
+
+.escolhaJogadas{
+    height: 7vw;
+    width: 7vw;
+    border: 1px solid black;
+}
+.divBotaoJogar{
+    background: rgb(6, 82, 13);
+    width: 33vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.botaoJogar{
+    height: 5vw;
+    width: 10vw;
+}
+.divMovimentoPc{
+    background: red;
+    width: 33vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }

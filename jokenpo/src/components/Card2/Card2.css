@@ -3,9 +3,8 @@
     flex-direction: column;
     justify-content: space-between ;
     border: 1px solid black;
-    margin: 10px;
-    width: 450px;
-    height: 450px;
+    width: 28vw;
+    height: 28vw;
 }
 .divNome2{
     border-top: 1px solid black;
@@ -17,3 +16,4 @@
     height: 900%;
     width: 90%;
 }
+

@@ -1,0 +1,14 @@
+.Movimento{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.movimentoItem{
+    height: 5vw;
+    width: 5vw;
+}
+.movimentoItem:focus{
+    border: 5px blue solid;
+}
