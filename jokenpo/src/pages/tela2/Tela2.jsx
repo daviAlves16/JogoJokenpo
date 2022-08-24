@@ -8,7 +8,8 @@ import './Tela2.css'
 
 
 export function Tela2() {
-  var {id, idpc} = useParams();
+  var {id, idpc, partida} = useParams();
+  const [numeroPartida, setNumeroPartida] = useState(partida)
   const [personagem, setPersonagem] = useState({id: 0, nome : '', img : ''});
   const [personagemPC, setPersonagemPC] = useState({id: 0, nome : '', img : ''});
   var cont = 0
@@ -22,8 +23,15 @@ export function Tela2() {
   const [ResultadoFinal, setResultadoFinal] = useState('');
   const [MeuEstadoPlacar, setMeuEstadoPlacar] = useState(0);
   const [MeuPcPlacar, setMeuPcPlacar] = useState(0);
+  const [Modal2, setModal2] = useState("");
+  const [RodadasOficiais, setRodadasOficiais] = useState(['?']); 
+
+  var PartidaOficial = []
+  //var RodadasOficiais = []
+
   var MinhaJogada2 = ''
   var PcJogada2 = ''
+
   function criar(){
     axios.post('http://localhost:3000/buscar1',{
         id: id
@@ -48,6 +56,9 @@ export function Tela2() {
       })
   }
 
+  function acionarModal2(){
+    setModal2("#modal2")
+  }
 
  function jogar(){
   setResultMinhaJogada(MinhaJogada)
@@ -61,6 +72,7 @@ export function Tela2() {
      
     if(PcJogada2 == 'Pedra'){
       setResultadoFinal('=')
+
     }else{
       if(PcJogada2 == 'Papel'){
         setResultadoFinal('X')
@@ -68,7 +80,6 @@ export function Tela2() {
         
       }else{
         if(PcJogada2 == 'Tesoura'){
-          contMeuPlacar++
           setResultadoFinal('S2')
           setMeuEstadoPlacar((MeuEstadoPlacar) => MeuEstadoPlacar + 1)
         }
@@ -79,8 +90,6 @@ export function Tela2() {
       
       if(PcJogada2 == 'Pedra'){
         setResultadoFinal('S2')
-        var contMeuEstado = MeuEstadoPlacar
-        contMeuEstado++
         setMeuEstadoPlacar((MeuEstadoPlacar) => MeuEstadoPlacar + 1)
         
       }else{
@@ -113,13 +122,39 @@ export function Tela2() {
       }
     }
   }
+  if((MeuEstadoPlacar + 1) == 3){
+    acionarModal2()
+  }else{
+    if((MeuPcPlacar + 1) == 3){
+      acionarModal2()
+    }
+  }
   
  }
 
  function limparSomar(){
+
+  const Rodada = {
+    numeroPartida: partida,
+    idMeuJogador: id, 
+    idPcJogador: idpc,
+    tipoMinhaJogada: ResultMinhaJogada,
+    tipoPcJogada: ResultPcJogada,
+    resultado: ResultadoFinal,
+    minhaPontuacao: MeuEstadoPlacar,
+    pcPontuacao: MeuPcPlacar
+  }
+
+  setRodadasOficiais(prevState => [...prevState, Rodada])
+  if(RodadasOficiais == '?'){
+    RodadasOficiais.shift()
+  }
+  console.log(RodadasOficiais)
+
     setResultMinhaJogada('')
     setResultPcJogada('')
     setResultadoFinal('')
+
 
  }
   
@@ -151,7 +186,8 @@ export function Tela2() {
 
   return (
     <div className='baseTela2'>
-        <h1>Tela 2</h1>
+       <h1>Partida: {numeroPartida}</h1>
+        
 
         <div className='divCards2'>
         <Card2 
@@ -205,7 +241,9 @@ export function Tela2() {
           </div>
 
           <div className='divMovimentoPc'>
-            <div className='escolhaJogadas'></div>
+            <div>
+              <input type="button" value={RodadasOficiais[RodadasOficiais.length - 1].tipoPcJogada} className="movimentoItem"/>
+            </div>
           </div>
         </div>
 
@@ -224,11 +262,36 @@ export function Tela2() {
         ...
       </div>
       <div className="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={limparSomar}>Fechar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target={Modal2} data-toggle="modal"  onClick={limparSomar}>Fechar</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="modal fade modalClass" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Título do modal</h5>
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
+      </div>
+      <div class="modal-body">
+        Cabouuuuu
+      </div>
+      <div class="modal-footer">
+        <Link to='/tela3/'>
+          <button type="button" class="btn btn-secondary">Fechar</button>
+        </Link>  
+      </div>
+    </div>
+  </div>
+</div>
+
         
     </div>
   )

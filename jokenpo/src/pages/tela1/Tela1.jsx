@@ -10,7 +10,7 @@ export function Tela1() {
   var cont = 0
   var ids = []
   var test = 0
-
+  var partida = 1
   function criar(){
 
     axios.get('http://localhost:3000/buscar', {
@@ -28,7 +28,7 @@ export function Tela1() {
           id: response.data[i].id,
           name: response.data[i].nome,
           imgPersonagem: response.data[i].imagem,
-          url: "/tela2/" + response.data[i].id +"/"+ ids[test]
+          url: "/tela2/" + response.data[i].id +"/"+ ids[test] + "/" + partida
           }
           setPersonagens(prevState => [...prevState, newPersonage]);
           
