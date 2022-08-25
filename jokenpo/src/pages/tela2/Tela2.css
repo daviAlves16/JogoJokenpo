@@ -17,16 +17,29 @@
     justify-content: space-evenly;
     color: black;
 }
-.movimentosDoJogos{
+.headerResult{
     display: flex;
+    justify-content: space-between;
+}
+.movimentosDoJogos{
     align-items: center;
     justify-content: space-between;
 }
 .placares{
-    height: 10vw;
     width: 100%;
     background: blue;
     color: aliceblue;
+}
+.fimDeJogo{
+    flex-direction: column;
+    align-items: center;
+
+}
+.removePlacares{
+    display: none;
+}
+.adicionarPlacares{
+    display: flex;
 }
 .placar2{
     display: flex;

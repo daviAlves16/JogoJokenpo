@@ -1,0 +1,9 @@
+.rodadasBase{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+.imagemBase{
+    width: 5vw;
+    height: 5vw;
+}

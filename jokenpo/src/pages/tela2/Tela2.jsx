@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from "axios";
 import {Link, useParams} from 'react-router-dom'
 import { Card2 } from '../../components/Card2/Card2';
 import { Movimento } from '../../components/Movimentos/Movimentos';
-
+import { CustomerContext } from '../../components/Contexts/customer';
 import './Tela2.css'
 
 
 export function Tela2() {
   var {id, idpc, partida} = useParams();
+  const {setPartidasOficiais} = useContext(CustomerContext)
+  const {submit} = useContext(CustomerContext)
+  const {infoPartida} = useContext(CustomerContext)
   const [numeroPartida, setNumeroPartida] = useState(partida)
   const [personagem, setPersonagem] = useState({id: 0, nome : '', img : ''});
   const [personagemPC, setPersonagemPC] = useState({id: 0, nome : '', img : ''});
@@ -16,6 +19,7 @@ export function Tela2() {
   var ids = []
   var test = 0
   var moviments = ['Pedra', 'Papel', 'Tesoura']
+  var vencedor2 = ''
 
   const [MinhaJogada, setMinhaJogada] = useState('');
   const [ResultMinhaJogada, setResultMinhaJogada] = useState('');
@@ -23,12 +27,14 @@ export function Tela2() {
   const [ResultadoFinal, setResultadoFinal] = useState('');
   const [MeuEstadoPlacar, setMeuEstadoPlacar] = useState(0);
   const [MeuPcPlacar, setMeuPcPlacar] = useState(0);
-  const [Modal2, setModal2] = useState("");
   const [RodadasOficiais, setRodadasOficiais] = useState(['?']); 
-
-  var PartidaOficial = []
+  const [contadorRodadas, setContadorRodadas] = useState(0); 
+  const [FimDeJogo1, setFimDeJogo1] = useState('removePlacares');
+  const [FimDeJogo2, setFimDeJogo2] = useState('adicionarPlacares');
+  const [vencedor, setVencedor] = useState('');
   //var RodadasOficiais = []
-
+  //var FimDeJogo1 = 'flex'
+  //var FimDeJogo2 = 'none'
   var MinhaJogada2 = ''
   var PcJogada2 = ''
 
@@ -56,8 +62,11 @@ export function Tela2() {
       })
   }
 
-  function acionarModal2(){
-    setModal2("#modal2")
+  function fim(){
+    
+    setFimDeJogo1('adicionarPlacares')
+    setFimDeJogo2('removePlacares')
+    setPartidasOficiais(prevState => [...prevState, RodadasOficiais]);
   }
 
  function jogar(){
@@ -122,45 +131,48 @@ export function Tela2() {
       }
     }
   }
-  if((MeuEstadoPlacar + 1) == 3){
-    acionarModal2()
-  }else{
-    if((MeuPcPlacar + 1) == 3){
-      acionarModal2()
-    }
-  }
   
  }
 
  function limparSomar(){
 
   const Rodada = {
-    numeroPartida: partida,
-    idMeuJogador: id, 
-    idPcJogador: idpc,
+    idRodada: contadorRodadas,
+    numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1,
+    nomeMeuJogador: personagem.nome,
+    nomePcJogador: personagemPC.nome,
+    imagemMeuJogador: personagem.img,
+    imagemPcJogador: personagemPC.img,
     tipoMinhaJogada: ResultMinhaJogada,
     tipoPcJogada: ResultPcJogada,
     resultado: ResultadoFinal,
-    minhaPontuacao: MeuEstadoPlacar,
-    pcPontuacao: MeuPcPlacar
   }
 
   setRodadasOficiais(prevState => [...prevState, Rodada])
   if(RodadasOficiais == '?'){
     RodadasOficiais.shift()
   }
-  console.log(RodadasOficiais)
 
     setResultMinhaJogada('')
     setResultPcJogada('')
     setResultadoFinal('')
+    setContadorRodadas((contadorRodadas) => contadorRodadas + 1)
 
-
+    if((MeuEstadoPlacar) >= 3){
+      fim()
+      setVencedor(personagem.nome)
+      submit({numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1, vencedor : personagem.nome, meuPlacar: MeuEstadoPlacar, pcPlacar: MeuPcPlacar})
+    }else{
+      if((MeuPcPlacar) >= 3){
+        fim()
+        setVencedor(personagemPC.nome)
+        submit({numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1, vencedor : personagemPC.nome, meuPlacar: MeuEstadoPlacar, pcPlacar: MeuPcPlacar})
+      }
+    }
  }
   
   useEffect(() =>{
     if(cont ==0){
-    
       if(id == idpc){
       axios.get('http://localhost:3000/buscar', {
       })
@@ -186,7 +198,11 @@ export function Tela2() {
 
   return (
     <div className='baseTela2'>
-       <h1>Partida: {numeroPartida}</h1>
+       <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+        <h1>Partida: {infoPartida[infoPartida.length - 1].numeroPartida + 1}</h1>
+        <h1>Rodada: {contadorRodadas}</h1>
+       </div>
+       
         
 
         <div className='divCards2'>
@@ -209,9 +225,17 @@ export function Tela2() {
               <h3>{personagemPC.nome} </h3>
             </div>
 
+            <div className={FimDeJogo1 + ' fimDeJogo'}>
+              <h1>Partida Encerrada!</h1> 
+              <h1>Vencedor : {vencedor}</h1>
+              <Link to='/tela3/'>
+              <input type="button" value="Ver Resultados" />
+              </Link> 
+            </div>
+
           </div>
           
-          <div className='movimentosDoJogos'>
+          <div className={'movimentosDoJogos ' + FimDeJogo2}>
             <div className='jogadas'><h1>{ResultMinhaJogada}</h1></div>
             <div className='jogadas'><h1>{ResultadoFinal}</h1></div>
             <div className='jogadas'><h1>{ResultPcJogada}</h1></div>
@@ -262,31 +286,7 @@ export function Tela2() {
         ...
       </div>
       <div className="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target={Modal2} data-toggle="modal"  onClick={limparSomar}>Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade modalClass" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Título do modal</h5>
-          
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        
-      </div>
-      <div class="modal-body">
-        Cabouuuuu
-      </div>
-      <div class="modal-footer">
-        <Link to='/tela3/'>
-          <button type="button" class="btn btn-secondary">Fechar</button>
-        </Link>  
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"  data-toggle="modal"  onClick={limparSomar}>Fechar</button>
       </div>
     </div>
   </div>

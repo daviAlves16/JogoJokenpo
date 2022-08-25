@@ -1,8 +1,8 @@
-.base{
+.base4{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.headerTela3{
+.headerTela4{
     width: 100%;
 }
