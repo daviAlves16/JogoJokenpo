@@ -4,12 +4,17 @@ import './Card.css'
 export function Card(props) {
   return (
     <div className='Card'>
-        <div className='divImgs'>
-            <img className='imgCard' src={props.link} alt=""/>
+
+      <div class="card">
+        <img className="card-img-top imgCard" src={props.link} alt="Imagem de capa do card"/>
+        
+        <div className="card-body divNome">
+          <p>{props.name}</p>
         </div>
-        <div className='divNome'>
-            <strong>{props.name}</strong>
-        </div>
+
+      </div>
+
+
     </div>
   );
 }

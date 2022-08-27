@@ -3,9 +3,25 @@
     margin: 0;
     box-sizing: border-box;
     width: 100vw;
-    height: 100vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    display: flex;
+    justify-content: space-around;
+}
+.introducao{
+    padding-right: 2vw;
+    width: 55vw;
+    color: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.margimText{
+    margin-top: 20px;
 }
 .cardsPosition{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    background: var(--button-bg);
 }

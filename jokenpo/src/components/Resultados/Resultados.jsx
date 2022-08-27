@@ -28,6 +28,9 @@ export function Resultados(props) {
                 minhaJogada={rodada.tipoMinhaJogada}
                 pcJogada={rodada.tipoPcJogada}
                 result={rodada.resultado}
+                imgResultado={rodada.resultadoImg}
+                urlMinhaJogada={rodada.urlMinhaJogada}
+                urlPcJogada={rodada.urlPcJogada}
 
             />
           ))

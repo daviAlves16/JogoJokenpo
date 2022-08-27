@@ -1,0 +1,42 @@
+:root {
+    --purple-bg: #290742;
+    --dark-bg: #0c0114;
+    --dark-bg-componet: #340257;
+    --button-bg: #9e6dc2;
+    --white: #fff;
+    --light-purple: #fbf6ff;
+    --green: #4fff4b;
+    --color-base: #e0c8f1;
+}
+.tamanho{
+    height: 100vh;
+}
+
+.baseDoApp{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-base);
+}
+.headerDoApp{
+    background: var(--dark-bg);
+    height: 5vw;
+    width: 100%;
+    color: white;
+    border-bottom: 2px solid var(--green);
+}
+.titulo{
+    margin: 10px;
+}
+.footerDoApp{
+    height: 5vw;
+    width: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    padding: 20px;
+    border-top: 2px solid var(--green);
+}

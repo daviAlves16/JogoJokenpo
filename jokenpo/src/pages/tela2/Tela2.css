@@ -2,20 +2,22 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
+    width: 96vw;
+    padding-right: 2vw;
+    padding-left: 2vw;
+
 }
 .divCards2{
     display: flex;
-    justify-content: space-between ;
-    width: 100vw;
+    justify-content: space-around ;
+    width: 100%;
 }
 .divDoJogo{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    color: black;
+    width: 32vw;
 }
 .headerResult{
     display: flex;
@@ -27,10 +29,10 @@
 }
 .placares{
     width: 100%;
-    background: blue;
-    color: aliceblue;
+    color: var(--dark-bg-componet);
 }
 .fimDeJogo{
+    margin-top: 30px;
     flex-direction: column;
     align-items: center;
 
@@ -44,39 +46,67 @@
 .placar2{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    padding: 0px;
+    background: rgb(197, 197, 197);
+    
+}
+.placar3{
+    display: flex;
+    align-items: center;
+    background: var(--dark-bg-componet);
+    color: white;
+    height: 5vw;
+}
+.placar3Nomes{
+    text-align: center;
+    width: 30%;
 }
 .divNomePlacar{
     text-align: center;
+    display: flex;
+    justify-content: space-around;
+    background: var(--green);
 }
 .jogadas{
-    height: 11vw;
-    width: 11vw;
-    border: 1px solid black;
+    height: 8vw;
+    width: 8vw;
     margin: 5px;
 }
-.divMovimentos{
+.imgJogadas5{
+    border: 0px;
     width: 100%;
-    height: 30vh;
-    border: 1px solid black ;
+    height: 100%;
+    border: none;
+}
+.divMovimentos{
+    width: 96vw;
+    border: 3px solid rgb(241, 241, 241) ;
     margin-top: 10px;
-    display: flex;
     justify-content: space-around;
 }
 .divMovimentosJogador{
-    background: red;
+    background: var(--button-bg);
     height: 100%;
     width: 33vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 20px;
+    padding-bottom: 0px;
 }
+.divMovimentosJogador2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .movimentoItem{
-    height: 5vw;
-    width: 5vw;
+    height: 7vw;
+    width: 7vw;
 }
 .movimentoItem:focus{
-    border: 5px blue solid;
+    border: solid 5px var(--dark-bg-componet);
 }
 
 .escolhaJogadas{
@@ -85,7 +115,7 @@
     border: 1px solid black;
 }
 .divBotaoJogar{
-    background: rgb(6, 82, 13);
+
     width: 33vw;
     display: flex;
     align-items: center;
@@ -94,11 +124,24 @@
 .botaoJogar{
     height: 5vw;
     width: 10vw;
+    
 }
 .divMovimentoPc{
-    background: red;
+    background: var(--button-bg);
     width: 33vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+.modalGanhou{
+    background: var(--green);
+    color: var(--dark-bg-componet);
+}
+.modalPerdeu{
+    background: rgb(235, 91, 91);
+    color: white
+}
+.modalEmpatou{
+    background: rgb(173, 171, 171);
+    color: black
 }

@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from "axios";
 import './Tela1.css'
 import {Link} from 'react-router-dom'
 import { Card } from '../../components/Card/Card'
+import { CustomerContext } from '../../components/Contexts/customer';
 
 export function Tela1() {
-
+  const {setTamanho} = useContext(CustomerContext)
   const [personagens, setPersonagens] = useState([]);
   var cont = 0
   var ids = []
@@ -41,14 +42,21 @@ export function Tela1() {
     if(cont == 0){
       criar();
       cont++
+      setTamanho('tamanho')
     }
   }, []);
 
   return (
     <div className='baseTela1'>
-        <h1>Tela 1</h1>
-        <div className='cardsPosition'>
-        {
+        <div className='introducao'>
+          <div>
+          <h1>Bem Vindos ao jogo de teste Jokenpo!</h1>
+          <h3 className='margimText'>Para começar o jogo, clique no personagem com quem você deseja jogar! O computador escolherá outro personagem para batalhar com você!</h3>
+          <h4 className='margimText'>Boa sorte!</h4>
+          </div>
+        </div>
+        <div className='cardsPosition'> 
+          {
           
           personagens.map(personagem => (
             <Link key={personagem.id} to={personagem.url}>
@@ -61,7 +69,6 @@ export function Tela1() {
             </Link>
           ))
         }
-        
         </div>
        
     </div>

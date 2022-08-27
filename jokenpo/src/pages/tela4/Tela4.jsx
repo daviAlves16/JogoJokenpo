@@ -6,7 +6,15 @@ import { Resultados } from '../../components/Resultados/Resultados';
 
 export function Tela4() {
     const {PartidasOficiais} = useContext(CustomerContext)
+    const {setTamanho} = useContext(CustomerContext)
     console.log(PartidasOficiais)
+    var cont = 0
+    useEffect(() =>{
+      if(cont == 0){
+        cont++
+        setTamanho('')
+      }
+    }, []);
 
   return (
     <div className='base4'>

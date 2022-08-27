@@ -6,11 +6,18 @@ import { Resultados } from '../../components/Resultados/Resultados';
 
 export function Tela3() {
   const {PartidasOficiais} = useContext(CustomerContext)
+  const {setTamanho} = useContext(CustomerContext)
   const[rodadas, setRodadas] = useState([])
   const{partida, setPartida} = useState(0)
   var cont = 0
 
-  
+  useEffect(() =>{
+    if(cont == 0){
+      cont++
+      setTamanho('')
+    }
+  }, []);
+
   return (
     <div className='base'>
         <div className='headerTela'>

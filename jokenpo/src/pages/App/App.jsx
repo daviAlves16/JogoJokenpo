@@ -11,7 +11,8 @@ import { CustomerContext } from '../../components/Contexts/customer'
 export function App() {
   const [PartidasOficiais, setPartidasOficiais] = useState([]);
   const [infoPartida, setInfoPartida] = useState([{numeroPartida: 0 , vencedor: '', meuPlacar:100, pcPlacar: 0}]);
-  
+  const [tamanho, setTamanho] = useState('tamanho');
+
   const handleSubmit = ({numeroPartida, vencedor, meuPlacar, pcPlacar})=>{
     const infos = {
       numeroPartida: numeroPartida,
@@ -29,16 +30,28 @@ export function App() {
   }
   
   return (
-    <CustomerContext.Provider value={{PartidasOficiais, setPartidasOficiais, infoPartida, submit: handleSubmit}}>
-      <Router>
-      <Routes>
-        <Route path="/" element={<Tela1/>}/>
-        <Route path="/tela2/:id/:idpc/:partida" element={<Tela2/>}/>
-        <Route path="/tela3/" element={<Tela3/>}/>
-        <Route path="/tela4/" element={<Tela4/>}/>
-      </Routes>
-    </Router>
-    </CustomerContext.Provider>
+    <div className={'baseDoApp ' + tamanho}>
+      <div className='headerDoApp'>
+        <h1 className='titulo'>Jokenpo</h1>
+      </div>
+      <CustomerContext.Provider value={{PartidasOficiais, setPartidasOficiais, infoPartida, submit: handleSubmit, setTamanho}}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Tela1/>}/>
+            <Route path="/tela2/:id/:idpc/:partida" element={<Tela2/>}/>
+            <Route path="/tela3/" element={<Tela3/>}/>
+            <Route path="/tela4/" element={<Tela4/>}/>
+          </Routes>
+        </Router>
+      </CustomerContext.Provider>
+      <footer className='footerDoApp'>
+          <div>
+            Desenvolvido por: Davi Alves
+          </div>  
+      </footer>
+
+    </div>
+    
   )
 }
 
