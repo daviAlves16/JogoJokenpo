@@ -10,15 +10,18 @@ import { CustomerContext } from '../../components/Contexts/customer'
 
 export function App() {
   const [PartidasOficiais, setPartidasOficiais] = useState([]);
-  const [infoPartida, setInfoPartida] = useState([{numeroPartida: 0 , vencedor: '', meuPlacar:100, pcPlacar: 0}]);
+  const [infoPartida, setInfoPartida] = useState([{placarEu: 0, placarPc: 0, numeroPartida: 0 , vencedor: '', meuPlacar:100, pcPlacar: 0}]);
   const [tamanho, setTamanho] = useState('tamanho');
+  const [tela, setTela] = useState('');
 
-  const handleSubmit = ({numeroPartida, vencedor, meuPlacar, pcPlacar})=>{
+  const handleSubmit = ({placarEu, placarPc, numeroPartida, vencedor, meuPlacar, pcPlacar})=>{
     const infos = {
       numeroPartida: numeroPartida,
       vencedor: vencedor,
       meuPlacar: meuPlacar,
-      pcPlacar: pcPlacar
+      pcPlacar: pcPlacar,
+      placarEu: infoPartida[infoPartida.length - 1].placarEu + placarEu,
+      placarPc: infoPartida[infoPartida.length - 1].placarPc + placarPc
     }
     setInfoPartida(prevState => [...prevState, infos]);
     
@@ -32,9 +35,10 @@ export function App() {
   return (
     <div className={'baseDoApp ' + tamanho}>
       <div className='headerDoApp'>
-        <h1 className='titulo'>Jokenpo</h1>
+        <h4 className='titulo'>Jokenpo</h4>
+        <h5 className='titulo2'>{tela}</h5>
       </div>
-      <CustomerContext.Provider value={{PartidasOficiais, setPartidasOficiais, infoPartida, submit: handleSubmit, setTamanho}}>
+      <CustomerContext.Provider value={{PartidasOficiais, setPartidasOficiais, infoPartida, submit: handleSubmit, setTamanho, setTela}}>
         <Router>
           <Routes>
             <Route path="/" element={<Tela1/>}/>
@@ -46,7 +50,8 @@ export function App() {
       </CustomerContext.Provider>
       <footer className='footerDoApp'>
           <div>
-            Desenvolvido por: Davi Alves
+            <label htmlFor="" className='desenvolvido'>Desenvolvido por:</label>
+            <label htmlFor=""> Davi Alves</label>
           </div>  
       </footer>
 

@@ -7,6 +7,7 @@ import { CustomerContext } from '../../components/Contexts/customer';
 
 export function Tela1() {
   const {setTamanho} = useContext(CustomerContext)
+  const {setTela} = useContext(CustomerContext)
   const [personagens, setPersonagens] = useState([]);
   var cont = 0
   var ids = []
@@ -40,6 +41,7 @@ export function Tela1() {
   
   useEffect(() =>{
     if(cont == 0){
+      setTela('Tela Inicial')
       criar();
       cont++
       setTamanho('tamanho')
@@ -50,7 +52,7 @@ export function Tela1() {
     <div className='baseTela1'>
         <div className='introducao'>
           <div>
-          <h1>Bem Vindos ao jogo de teste Jokenpo!</h1>
+          <h1 className='abertura'>Bem Vindos ao jogo de teste Jokenpo!</h1>
           <h3 className='margimText'>Para começar o jogo, clique no personagem com quem você deseja jogar! O computador escolherá outro personagem para batalhar com você!</h3>
           <h4 className='margimText'>Boa sorte!</h4>
           </div>

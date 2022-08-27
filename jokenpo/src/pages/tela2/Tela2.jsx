@@ -18,6 +18,7 @@ export function Tela2() {
   var {id, idpc, partida} = useParams();
   const {setPartidasOficiais} = useContext(CustomerContext)
   const {submit} = useContext(CustomerContext)
+  const {setTela} = useContext(CustomerContext)
   const {infoPartida} = useContext(CustomerContext)
   const [numeroPartida, setNumeroPartida] = useState(infoPartida[infoPartida.length - 1].numeroPartida + 1);
   const [personagem, setPersonagem] = useState({id: 0, nome : '', img : ''});
@@ -26,7 +27,9 @@ export function Tela2() {
   var ids = []
   var test = 0
   var moviments = [{tipo: 'Pedra', img: pedra}, {tipo: 'Papel', img: papel}, {tipo: 'Tesoura', img: tesoura}]
-  var vencedor2 = ''
+  var resultTest = {tipo: '', img: ''}
+  var minhaJogadaTest = {tipo: '', img: ''}
+  var pcJogadaTest = {tipo: '', img: ''}
 
   const [MinhaJogada, setMinhaJogada] = useState({tipo: '', img: ''});
   const [ResultMinhaJogada, setResultMinhaJogada] = useState({tipo: '', img: ''});
@@ -75,32 +78,44 @@ export function Tela2() {
     
     setFimDeJogo1('adicionarPlacares')
     setFimDeJogo2('removePlacares')
+    console.log(RodadasOficiais)
     setPartidasOficiais(prevState => [...prevState, RodadasOficiais]);
   }
 
  function jogar(){
   setResultMinhaJogada({tipo: MinhaJogada.tipo, img: MinhaJogada.img})
   MinhaJogada2 = MinhaJogada.tipo
+  minhaJogadaTest.tipo = MinhaJogada.tipo
+  minhaJogadaTest.img = MinhaJogada.img
+
 
   var indice = Math.floor(Math.random() * moviments.length);
   setResultPcJogada({tipo: moviments[indice].tipo, img: moviments[indice].img})
   PcJogada2 = moviments[indice].tipo
-
+  pcJogadaTest.tipo = moviments[indice].tipo
+  pcJogadaTest.img = moviments[indice].img
  
   if(MinhaJogada2 == 'Pedra'){
      
     if(PcJogada2 == 'Pedra'){
+      resultTest.tipo = '='
+      resultTest.img = empatou
+
       setResultadoFinal({tipo: '=', img: empatou})
       setTipoModal({tipo: 'Oxeeeeeeeeee????', tipo2: 'Empatou ========!', classe: 'modalEmpatou'})
 
     }else{
       if(PcJogada2 == 'Papel'){
+        resultTest.tipo = 'X'
+        resultTest.img = perdeu
         setResultadoFinal({tipo: 'X', img: perdeu})
         setMeuPcPlacar((MeuPcPlacar) => MeuPcPlacar + 1)
         setTipoModal({tipo: 'nãooooooooooooooo', tipo2: 'Perdeu S/2', classe: 'modalPerdeu'})
         
       }else{
         if(PcJogada2 == 'Tesoura'){
+          resultTest.tipo = 'S2'
+          resultTest.img = ganhou
           setResultadoFinal({tipo: 'S2', img: ganhou})
           setMeuEstadoPlacar((MeuEstadoPlacar) => MeuEstadoPlacar + 1)
           setTipoModal({tipo: 'Aeeeeeeeeeeeeeee', tipo2: 'Ganhou !!!!!!', classe: 'modalGanhou'})
@@ -111,16 +126,22 @@ export function Tela2() {
     if(MinhaJogada2 == 'Papel'){
       
       if(PcJogada2 == 'Pedra'){
+        resultTest.tipo = 'S2'
+        resultTest.img = ganhou
         setResultadoFinal({tipo: 'S2', img: ganhou})
         setMeuEstadoPlacar((MeuEstadoPlacar) => MeuEstadoPlacar + 1)
         setTipoModal({tipo: 'Aeeeeeeeeeeeeeee', tipo2: 'Ganhou !!!!!!', classe: 'modalGanhou'})
         
       }else{
         if(PcJogada2 == 'Papel'){
+          resultTest.tipo = '='
+          resultTest.img = empatou
           setResultadoFinal({tipo: '=', img: empatou})
           setTipoModal({tipo: 'Oxeeeeeeeeee????', tipo2: 'Empatou ========!', classe: 'modalEmpatou'})
         }else{
           if(PcJogada2 == 'Tesoura'){
+            resultTest.tipo = 'X'
+            resultTest.img = perdeu
             setResultadoFinal({tipo: 'X', img: perdeu})
             setMeuPcPlacar((MeuPcPlacar) => MeuPcPlacar + 1)
             setTipoModal({tipo: 'nãooooooooooooooo', tipo2: 'Perdeu S/2', classe: 'modalPerdeu'})
@@ -132,16 +153,22 @@ export function Tela2() {
       if(MinhaJogada2 == 'Tesoura'){
         
         if(PcJogada2 == 'Pedra'){
+          resultTest.tipo = 'X'
+          resultTest.img = perdeu
           setResultadoFinal({tipo: 'X', img: perdeu})
           setMeuPcPlacar((MeuPcPlacar) => MeuPcPlacar + 1)
           setTipoModal({tipo: 'nãooooooooooooooo', tipo2: 'Perdeu S/2', classe: 'modalPerdeu'})
         }else{
           if(PcJogada2 == 'Papel'){
+            resultTest.tipo = 'S2'
+            resultTest.img = ganhou
             setResultadoFinal({tipo: 'S2', img: ganhou})
             setMeuEstadoPlacar((MeuEstadoPlacar) => MeuEstadoPlacar + 1)
             setTipoModal({tipo: 'Aeeeeeeeeeeeeeee', tipo2: 'Ganhou !!!!!!', classe: 'modalGanhou'})
           }else{
             if(PcJogada2 == 'Tesoura'){
+              resultTest.tipo = '='
+              resultTest.img = empatou
               setResultadoFinal({tipo: '=', img: empatou})
               setTipoModal({tipo: 'Oxeeeeeeeeee????', tipo2: 'Empatou ========!', classe: 'modalEmpatou'})
             }
@@ -150,11 +177,9 @@ export function Tela2() {
       }
     }
   }
-  
+  cadastrarRodada()
  }
-
- function limparSomar(){
-
+ function cadastrarRodada(){
   const Rodada = {
     idRodada: contadorRodadas,
     numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1,
@@ -162,19 +187,22 @@ export function Tela2() {
     nomePcJogador: personagemPC.nome,
     imagemMeuJogador: personagem.img,
     imagemPcJogador: personagemPC.img,
-    tipoMinhaJogada: ResultMinhaJogada.tipo,
-    tipoPcJogada: ResultPcJogada.tipo,
-    urlMinhaJogada:ResultMinhaJogada.img,
-    urlPcJogada: ResultPcJogada.img, 
-    resultado: ResultadoFinal.tipo,
-    resultadoImg: ResultadoFinal.img
+    tipoMinhaJogada: minhaJogadaTest.tipo,
+    tipoPcJogada: pcJogadaTest.tipo,
+    urlMinhaJogada:minhaJogadaTest.img,
+    urlPcJogada: pcJogadaTest.img, 
+    resultado: resultTest.tipo,
+    resultadoImg: resultTest.img
   }
 
   setRodadasOficiais(prevState => [...prevState, Rodada])
-  if(RodadasOficiais == '?'){
+  if(RodadasOficiais[0] == '?'){
     RodadasOficiais.shift()
   }
+  console.log(Rodada)
+ }
 
+ function limparSomar(){
     setResultMinhaJogada({tipo: '', img: ''})
     setResultPcJogada({tipo: '', img: ''})
     setResultadoFinal({tipo:'', img: interrogacao})
@@ -184,18 +212,19 @@ export function Tela2() {
     if((MeuEstadoPlacar) >= 3){
       fim()
       setVencedor(personagem.nome)
-      submit({numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1, vencedor : personagem.nome, meuPlacar: MeuEstadoPlacar, pcPlacar: MeuPcPlacar})
+      submit({placarEu: 1, placarPc: 0, numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1, vencedor : personagem.nome, meuPlacar: MeuEstadoPlacar, pcPlacar: MeuPcPlacar})
     }else{
       if((MeuPcPlacar) >= 3){
         fim()
         setVencedor(personagemPC.nome)
-        submit({numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1, vencedor : personagemPC.nome, meuPlacar: MeuEstadoPlacar, pcPlacar: MeuPcPlacar})
+        submit({placarEu: 0, placarPc: 1, numeroPartida: infoPartida[infoPartida.length - 1].numeroPartida + 1, vencedor : personagemPC.nome, meuPlacar: MeuEstadoPlacar, pcPlacar: MeuPcPlacar})
       }
     }
  }
   
   useEffect(() =>{
     if(cont ==0){
+      setTela('Tela da Partida')
       if(id == idpc){
       axios.get('http://localhost:3000/buscar', {
       })
@@ -231,8 +260,16 @@ export function Tela2() {
         <div className='divDoJogo'>
           <div className='placares'>
             <div className='divNomePlacar'>
-              <h2>Partida: {numeroPartida}</h2>
-              <h2>Rodada: {contadorRodadas}</h2>
+              <div>
+                <h2 className='fonts'>Partida</h2>
+                <h2>{numeroPartida}</h2>  
+              </div>
+              <div>
+                <h2 className='fonts'>Rodada</h2>
+                <h2>{contadorRodadas}</h2>
+              </div>
+              
+              
             </div>
 
             <div className='placar2'>
@@ -253,10 +290,13 @@ export function Tela2() {
             </div>
 
             <div className={FimDeJogo1 + ' fimDeJogo'}>
-              <h1>Partida Encerrada!</h1> 
-              <h2>Vencedor : {vencedor}</h2>
+              <h1 className='fonts'>Partida Encerrada!</h1>
+              <div style={{display: 'flex'}}>
+                <h2 className='fonts'>Vencedor :</h2>
+                <h2 className='espaco'>{vencedor}</h2>
+              </div> 
               <Link to='/tela3/'>
-                <button type="button" class="btn btn-info">Ver Resultados</button>
+                <button type="button" className="btn btn-info botaoVer">Ver Resultados</button>
               </Link> 
             </div>
           </div>
@@ -289,34 +329,34 @@ export function Tela2() {
               <button type="button" value="Pedra" onClick={() => setMinhaJogada({tipo: 'Pedra', img: pedra})} className="movimentoItem">
                 <img src={pedra} alt="" width='100%' height='100%'/>
               </button>
-              <p>Pedra</p>
+              <p className='fonts'>Pedra</p>
             </div>
 
             <div className='divMovimentosJogador2'>
               <button type="button" value="Papel" onClick={() => setMinhaJogada({tipo: 'Papel', img: papel})} className="movimentoItem">
                 <img src={papel} alt="" width='100%' height='100%'/>
               </button>
-              <p>Papel</p>
+              <p className='fonts'>Papel</p>
             </div>
 
             <div className='divMovimentosJogador2'>
               <button type="button" value="Tesoura" onClick={() => setMinhaJogada({tipo: 'Tesoura', img: tesoura})} className="movimentoItem">
                 <img src={tesoura} alt="" width='100%' height='100%'/>
               </button>
-              <p>Tesoura</p>
+              <p className='fonts'>Tesoura</p>
             </div>
          
           </div>
 
           <div className='divBotaoJogar'>
-            <button type="button" class="btn btn-success botaoJogar" onClick={jogar} data-toggle="modal" data-target="#modalExemplo">
+            <button type="button" class="btn btn-success botaoJogar fonts" onClick={jogar} data-toggle="modal" data-target="#modalExemplo">
               Jogar
             </button>
           </div>
 
           <div className='divMovimentoPc'>
             <div>
-              <img src={RodadasOficiais[RodadasOficiais.length - 1].urlPcJogada} alt="" className="movimentoItem"/>
+              <img src={ultimaJogadaPc} alt="" className="movimentoItem"/>
             </div>
           </div>
         </div>

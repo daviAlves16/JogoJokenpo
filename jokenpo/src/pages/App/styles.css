@@ -18,19 +18,27 @@
     flex-direction: column;
     justify-content: space-between;
     background: var(--color-base);
+    font-family: 'Comic Neue', cursive;
+    
 }
 .headerDoApp{
     background: var(--dark-bg);
-    height: 5vw;
+    height: 4vw;
     width: 100%;
     color: white;
     border-bottom: 2px solid var(--green);
+    display: flex;
+    justify-content: space-between;
 }
 .titulo{
     margin: 10px;
+    font-family: 'Fredoka One', cursive;
+}
+.titulo2{
+    margin: 15px;
 }
 .footerDoApp{
-    height: 5vw;
+    height: 3vw;
     width: 100%;
     background: var(--dark-bg);
     display: flex;
@@ -39,4 +47,8 @@
     color: white;
     padding: 20px;
     border-top: 2px solid var(--green);
+}
+.desenvolvido{
+    margin-right: 5px;
+    font-family: 'Fredoka One', cursive;
 }

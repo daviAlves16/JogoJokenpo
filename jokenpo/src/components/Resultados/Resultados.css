@@ -1,5 +1,72 @@
 .resultadosBase{
-    border: 1px solid black;
+    border: 3px solid rgb(255, 254, 254);
     width: 80%;
-    margin: 2vw;
+    margin-top: 1vw;
+}
+.fonts3{
+    font-family: 'Fredoka One', cursive;
+}
+.headerResult{
+    background: var(--green);
+    display: flex;
+    flex-direction: column;
+    
+}
+.corpoHeader{
+    display: flex;
+    justify-content: space-around;
+}
+.headerDoHeader{
+    background: green;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.divHeaderDosHeader{
+    width: 32%;
+    text-align: center;
+    margin-top: 5px;
+    color: white;
+}
+
+.footerHeader{
+    background: var(--green);
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.footerHeader2{
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+}
+.footerHeader2Placar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+}
+.div1Header{
+    width: 32%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(41, 216, 41);
+}
+.div2Header{
+    width: 32%;
+    text-align: center;
+}
+.div2Header2{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(41, 216, 41);
+}
+.div3Header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 32%;
+    text-align: center;
+    background: rgb(41, 216, 41);
 }

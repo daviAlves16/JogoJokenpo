@@ -9,15 +9,39 @@ export function Resultados(props) {
   return (
     <div className='resultadosBase'>
         <div className='headerResult'>
-            <h2>Partida: {PartidasOficiais[props.indicePartida][0].numeroPartida}</h2>
-            <h2>
-                {PartidasOficiais[props.indicePartida][0].nomeMeuJogador}
-                  - x - 
-                {PartidasOficiais[props.indicePartida][0].nomePcJogador}
-            </h2>
-            <h2>Vencedor: {infoPartida[props.indicePartida].vencedor}</h2>
+            <div className='headerDoHeader'>
+              <div className='divHeaderDosHeader'>
+                <h4 className='fonts3'>Partida</h4>
+              </div>
+              <div className='divHeaderDosHeader'>
+              <h4 className='fonts3'>Adversarios</h4>
+              </div>
+              <div className='divHeaderDosHeader'>
+                <h4 className='fonts3'>Vencedor</h4>
+              </div>
+            </div>
+            
+            <div className='corpoHeader'>
+            <div className='div1Header'>
+              <div> <h3>{PartidasOficiais[props.indicePartida][0].numeroPartida}</h3></div>
+            </div>
+            
+            <div className='div2Header'>
+              <div className='div2Header2'>
+                <div style={{width: '45%'}}><h4>{PartidasOficiais[props.indicePartida][0].nomeMeuJogador}</h4></div>
+                <div style={{width: '10%'}}><h1 className='fonts3'>X</h1></div>
+                <div style={{width: '45%'}}><h4>{PartidasOficiais[props.indicePartida][0].nomePcJogador}</h4></div>
+              </div>
+            </div>
+
+            <div className='div3Header'>
+              <div> <h3>{infoPartida[props.indicePartida].vencedor}</h3></div>
+            </div>
+            </div>
+
             
         </div>
+
         <div>
         {
           PartidasOficiais[props.indicePartida].map(rodada =>(
@@ -38,12 +62,20 @@ export function Resultados(props) {
         }
             
         </div>
-        <div>
-            <h2>placar : 
-                {infoPartida[props.indicePartida].meuPlacar}
-                x
-                {infoPartida[props.indicePartida].pcPlacar}
-                </h2>
+        <div className='footerHeader'>
+                
+                <div className='footerHeader2'>
+                <div>
+                  <h2 className='fonts3'>Placar: </h2>
+                </div>
+
+                <div className='footerHeader2Placar'>
+                  <h2>{infoPartida[props.indicePartida].meuPlacar}</h2>
+                  <h2 className='fonts3'>X</h2>
+                  <h2>{infoPartida[props.indicePartida].pcPlacar}</h2>
+                </div>
+                </div>
+               
         </div>
     </div>
   );

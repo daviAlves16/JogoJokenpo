@@ -16,6 +16,12 @@
     flex-direction: column;
     justify-content: space-around;
 }
+.abertura{
+    font-family: 'Fredoka One', cursive;
+    color: var(--dark-bg);
+    text-shadow: 5px 2px var(--green);
+}
+
 .margimText{
     margin-top: 20px;
 }

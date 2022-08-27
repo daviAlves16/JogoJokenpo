@@ -4,5 +4,32 @@
     align-items: center;
 }
 .headerTela3{
-    width: 100%;
+    width: 80%;
+    margin-top: 20px;
+    
+}
+.fonts2{
+    font-family: 'Fredoka One', cursive;
+}
+.headerTela32{
+    width: 50%;
+    background: var(--dark-bg-componet);
+    display: flex;
+    color: white;
+    border: 1px solid white;
+    padding-left: 10px;
+}
+.headerTela33{
+    width: 60%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background: var(--button-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 2vw;
+    color: black;
+}
+.botoesTela3{
+    margin: 20px;
 }

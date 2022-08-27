@@ -7,6 +7,12 @@
     padding-left: 2vw;
 
 }
+.fonts{
+    font-family: 'Fredoka One', cursive;
+}
+.espaco{
+    margin-left: 15px;
+}
 .divCards2{
     display: flex;
     justify-content: space-around ;
@@ -115,11 +121,11 @@
     border: 1px solid black;
 }
 .divBotaoJogar{
-
     width: 33vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background: rgb(190, 252, 181);
 }
 .botaoJogar{
     height: 5vw;
@@ -144,4 +150,8 @@
 .modalEmpatou{
     background: rgb(173, 171, 171);
     color: black
+}
+.botaoVer{
+    font-family: 'Fredoka One', cursive;
+    margin-top: 20px;
 }
