@@ -27,11 +27,8 @@ export function App() {
     
     if(infoPartida[0].vencedor == ''){
       infoPartida.shift()
-      console.log('Vraaaaaaaaaau')
     }
-    console.log(infoPartida)
   }
-  
   return (
     <div className={'baseDoApp ' + tamanho}>
       <div className='headerDoApp'>
@@ -49,14 +46,12 @@ export function App() {
         </Router>
       </CustomerContext.Provider>
       <footer className='footerDoApp'>
-          <div>
-            <label htmlFor="" className='desenvolvido'>Desenvolvido por:</label>
-            <label htmlFor=""> Davi Alves</label>
-          </div>  
+        <div>
+          <label htmlFor="" className='desenvolvido'>Desenvolvido por:</label>
+          <label htmlFor=""> Davi Alves</label>
+        </div>  
       </footer>
-
     </div>
-    
   )
 }
 

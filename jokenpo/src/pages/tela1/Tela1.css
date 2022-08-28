@@ -19,7 +19,7 @@
 .abertura{
     font-family: 'Fredoka One', cursive;
     color: var(--dark-bg);
-    text-shadow: 5px 2px var(--green);
+    text-shadow: 5px 1px var(--green);
 }
 
 .margimText{
