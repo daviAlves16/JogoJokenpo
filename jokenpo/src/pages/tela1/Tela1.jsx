@@ -15,7 +15,7 @@ export function Tela1() {
   var partida = 1
 
   function criar(){
-    axios.get('http://localhost:3000/buscar', {
+    axios.get('https://uploaderexemplebackendjokenpo.herokuapp.com/buscar', {
     })
     .then((response) => {
       for(let i = 0; i <response.data.length; i++){

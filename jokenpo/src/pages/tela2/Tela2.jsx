@@ -46,7 +46,7 @@ export function Tela2() {
   var test = 0
 
   function criar(){
-    axios.post('http://localhost:3000/buscar1',{
+    axios.post('https://uploaderexemplebackendjokenpo.herokuapp.com/buscar1',{
         id: id
     })
     .then((response) => {
@@ -56,7 +56,7 @@ export function Tela2() {
         img: response.data.imagem
       })
     })
-    axios.post('http://localhost:3000/buscar1',{
+    axios.post('https://uploaderexemplebackendjokenpo.herokuapp.com/buscar1',{
       id: idpc
     })
     .then((response) => {
@@ -205,7 +205,7 @@ export function Tela2() {
     if(cont ==0){
       setTela('Tela da Partida')
       if(id == idpc){
-        axios.get('http://localhost:3000/buscar', {
+        axios.get('https://uploaderexemplebackendjokenpo.herokuapp.com/buscar', {
         })
         .then((response) => {
           for(let i = 0; i <response.data.length; i++){
